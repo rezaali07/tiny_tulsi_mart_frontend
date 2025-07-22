@@ -1,0 +1,117 @@
+/* Footer styles */
+.footer {
+  background: linear-gradient(to right, #ffffff, #266c39);
+  /* White to orange gradient */
+  color: #fff;
+  padding: 60px 0;
+  /* Increased padding for better spacing */
+}
+
+/* Container for the footer content */
+.footer .container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Column layout */
+.footer .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Footer logo section */
+.footer-logo {
+  padding: 20px;
+  border-radius: 8px;
+
+}
+
+.footer-logo img {
+  max-width: 200px;
+  
+}
+
+.footer-logo p {
+  margin: 10px 0;
+  color: #333;
+  /* Darker color for better text visibility */
+}
+
+/* Footer Links Section (Company, Help, FAQ) */
+.footer-links {
+
+  padding: 20px;
+  border-radius: 8px;
+
+}
+
+.footer-links h5 {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #222;
+  /* Dark color for headings */
+  text-transform: uppercase;
+}
+
+/* Styling the list of links */
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+  color: #222;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+  color: white;
+  /* Matching orange hover effect */
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.social-icons li a {
+  color: #fff;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.social-icons li a:hover {
+  color: #ff7f50;
+  /* Matching orange hover effect */
+}
+
+/* Copyright Section */
+.copyright {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 14px;
+  color: #333;
+  /* Dark color for readability */
+}
+
+/* Responsive Layout for Footer */
+@media (max-width: 767px) {
+  .footer .row {
+    flex-direction: column;
+  }
+
+  .footer .footer-logo,
+  .footer .footer-links {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
