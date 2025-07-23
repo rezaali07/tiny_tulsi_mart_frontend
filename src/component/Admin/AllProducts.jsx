@@ -16,63 +16,46 @@ import SideBar from "./Sidebar";
 import { ToastContainer, toast } from "react-toastify";
 import { DELETE_PRODUCT_RESET } from "../../constants/ProductConstants";
 
-
 const AllProducts = ({ history }) => {
   const dispatch = useDispatch();
 
   const { error, products } = useSelector((state) => state.products);
-
   const { error: deleteError, isDeleted } = useSelector(
     (state) => state.deleteProduct
   );
 
   const deleteProductHandler = (id) => {
-    dispatch(deleteProduct(id));
+    const confirmDelete = window.confirm("Are you sure you want to delete this product?");
+    if (confirmDelete) {
+      dispatch(deleteProduct(id));
+    }
   };
 
   useEffect(() => {
     if (error) {
-      alert(error);
+      toast.error(error);
       dispatch(clearErrors());
     }
+
     if (deleteError) {
       toast.error(deleteError);
       dispatch(clearErrors());
     }
 
     if (isDeleted) {
-      toast.success("Product Deleted Successfully");
-      history.push("/dashboard");
+      toast.success("✅ Product Deleted Successfully");
       dispatch({ type: DELETE_PRODUCT_RESET });
+      dispatch(getAdminProduct()); // Refresh product list
     }
+
     dispatch(getAdminProduct());
-  }, [dispatch, alert, error, history]);
+  }, [dispatch, error, deleteError, isDeleted]);
 
   const columns = [
     { field: "id", headerName: "Product ID", minWidth: 200, flex: 0.5 },
-
-    {
-      field: "name",
-      headerName: "Name",
-      minWidth: 350,
-      flex: 1,
-    },
-    {
-      field: "stock",
-      headerName: "Stock",
-      type: "number",
-      minWidth: 150,
-      flex: 0.3,
-    },
-
-    {
-      field: "price",
-      headerName: "Price",
-      type: "number",
-      minWidth: 270,
-      flex: 0.5,
-    },
-
+    { field: "name", headerName: "Name", minWidth: 350, flex: 1 },
+    { field: "stock", headerName: "Stock", type: "number", minWidth: 150, flex: 0.3 },
+    { field: "price", headerName: "Price", type: "number", minWidth: 270, flex: 0.5 },
     {
       field: "actions",
       flex: 0.3,
@@ -84,7 +67,7 @@ const AllProducts = ({ history }) => {
         return (
           <Fragment>
             <Link to={`/edit/product/${params.getValue(params.id, "id")}`}>
-              <EditIcon />
+              <EditIcon style={{ color: "#4caf50", marginRight: 8 }} />
             </Link>
 
             <Button
@@ -92,7 +75,7 @@ const AllProducts = ({ history }) => {
                 deleteProductHandler(params.getValue(params.id, "id"))
               }
             >
-              <DeleteIcon />
+              <DeleteIcon style={{ color: "#f44336" }} />
             </Button>
           </Fragment>
         );
@@ -100,17 +83,12 @@ const AllProducts = ({ history }) => {
     },
   ];
 
-  const rows = [];
-
-  products &&
-    products.forEach((item) => {
-      rows.push({
-        id: item._id,
-        stock: item.stock,
-        price: item.price,
-        name: item.name,
-      });
-    });
+  const rows = products?.map((item) => ({
+    id: item._id,
+    stock: item.stock,
+    price: item.price,
+    name: item.name,
+  })) || [];
 
   return (
     <Fragment>
@@ -131,6 +109,7 @@ const AllProducts = ({ history }) => {
           />
         </div>
       </div>
+
       <ToastContainer
         position="bottom-center"
         autoClose={5000}
