@@ -26,5 +26,15 @@ export const favouriteReducer = (state = { favouriteItems: [] }, action) => {
         };
       }
 
-    
+    case REMOVE_FROM_FAVOURITE:
+      return {
+        ...state,
+        favouriteItems: state.favouriteItems.filter(
+          (i) => i.product !== action.payload
+        ),
+      };
+
+    default:
+      return state;
+  }
 };
