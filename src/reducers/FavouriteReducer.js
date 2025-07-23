@@ -12,8 +12,19 @@ export const favouriteReducer = (state = { favouriteItems: [] }, action) => {
         (i) => i.product === item.product
       );
 
-     
+      if (isItemExist) {
+        return {
+          ...state,
+          favouriteItems: state.favouriteItems.map((i) =>
+            i.product === isItemExist.product ? item : i
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          favouriteItems: [...state.favouriteItems, item],
+        };
+      }
 
     
-  }
 };
