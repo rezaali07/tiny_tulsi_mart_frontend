@@ -17,7 +17,18 @@ export const cartReducer = (
         (i) => i.product === item.product
       );
 
-      
+      if (isItemExist) {
+        return {
+          ...state,
+          cartItems: state.cartItems.map((i) =>
+            i.product === isItemExist.product ? item : i
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          cartItems: [...state.cartItems, item],
+        };
       }
 
     
