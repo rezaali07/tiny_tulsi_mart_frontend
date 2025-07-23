@@ -116,7 +116,26 @@ const AllUsers = ({ history }) => {
     });
 
   return (
-    
+    <Fragment>
+      <MetaData title={`ALL USERS - Admin`} />
+
+      <div className="dashboard">
+        <SideBar />
+        <div className="productListContainer">
+          <h1 id="productListHeading">ALL USERS</h1>
+
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={10}
+            disableSelectionOnClick
+            className="productListTable"
+            autoHeight
+          />
+        </div>
+      </div>
+      
+    </Fragment>
   );
 };
 
