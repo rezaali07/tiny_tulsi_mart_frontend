@@ -126,8 +126,66 @@ const UpdateOrder = ({ history, match }) => {
                     </div>
                   </div>
                 </div>
-                
-              
+                <div className="confirmCartItems">
+                  <Typography>Your Cart Items:</Typography>
+                  <div className="confirmCartItemsContainer">
+                    {order.orderItems &&
+                      order.orderItems.map((item) => (
+                        <div key={item.product}>
+                          <img src={item.image} alt="Product" />
+                          <Link to={`/product/${item.product}`}>
+                            {item.name}
+                          </Link>{" "}
+                          <span>
+                            {item.quantity} X ${item.price} ={" "}
+                            <b>${item.price * item.quantity}</b>
+                          </span>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              </div>
+              {/*  */}
+              <div
+                style={{
+                  display: order.orderStatus === "Delivered" ? "none" : "block",
+                }}
+              >
+                <form
+                  className="updateOrderForm" 
+                  onSubmit={updateOrderSubmitHandler}
+                >
+                  <h1>Process Order</h1>
+
+                  <div>
+                    <AccountTreeIcon />
+                    <select onChange={(e) => setStatus(e.target.value)}>
+                      <option value="">Category</option>
+                      
+                        <option value="Shipped">Shipped</option>
+                    
+
+                    
+                        <option value="Delivered">Delivered</option>
+                      
+                    </select>
+                  </div>
+
+                  <Button
+                    id="createProductBtn"
+                    type="submit"
+                    disabled={
+                      loading ? true : false || status === "" ? true : false
+                    }
+                  >
+                    Process
+                  </Button>
+                </form>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
       <ToastContainer
         position="bottom-center"
         autoClose={5000}
