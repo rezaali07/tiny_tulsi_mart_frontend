@@ -116,7 +116,34 @@ const AllProducts = ({ history }) => {
     <Fragment>
       <MetaData title={`ALL PRODUCTS - Admin`} />
 
-      
+      <div className="dashboard">
+        <SideBar />
+        <div className="productListContainer">
+          <h1 id="productListHeading">ALL PRODUCTS</h1>
+
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={10}
+            disableSelectionOnClick
+            className="productListTable"
+            autoHeight
+          />
+        </div>
+      </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </Fragment>
+  );
 };
 
 export default AllProducts;
