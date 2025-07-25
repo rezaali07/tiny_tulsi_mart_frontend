@@ -1,0 +1,76 @@
+.inputBox>span {
+  font-family: "Roboto";
+  animation: sliding 14s linear infinite;
+  display: block;
+}
+
+@keyframes sliding {
+  0% {
+    transform: translateX(-70%);
+  }
+
+  100% {
+    transform: translateX(130%);
+  }
+}
+
+.logo {
+  margin-left: 20px;
+  align-items: center;
+
+  width: 150px;   /* Increase this value as needed */
+  height: auto;   /* Maintains aspect ratio */
+}
+
+.Header__topbar {
+  align-items: center;
+}
+
+.navbar {
+  background-color: #266c39;
+  /* Orange color */
+  padding: 10px px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* Center navbar items vertically */
+  position: fixed;
+  /* Make navbar fixed at the top */
+  top: 0;
+  width: 100%;
+  /* Ensure navbar spans full width */
+  z-index: 1000;
+  /* Keep navbar above other content */
+  transition: background-color 0.9s ease;
+  /* Smooth transition, if needed */
+}
+
+.navbar .navigation ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+}
+
+.navbar .navigation ul li {
+  color: black;
+  /* Text color inside the navbar */
+  padding: 10px 15px;
+  /* Adjust padding for spacing */
+  font-weight: bold;
+}
+
+.navbar .navigation ul li:hover {
+  color: white;
+  /* Hover effect for the links */
+}
+
+/* No active state manipulation is needed, so this is redundant */
+.navbar.active {
+  background-color: #266c39;
+  /* Ensures navbar stays orange */
+}
+
+.navbar.scrolled {
+  background-color: #000;
+  /* Darker color for scrolled state */
+}

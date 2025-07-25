@@ -2,7 +2,10 @@ import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
-import { clearErrors, forgotPassword } from "../../actions/UserActions";
+import {
+  clearErrors,
+  forgotPassword,
+} from "../../actions/UserActions";
 import Loading from "../../more/Loader";
 import MetaData from "../../more/MetaData";
 import "./ForgotPassword.css";
@@ -18,9 +21,7 @@ const ForgotPassword = () => {
 
   const forgotPasswordSubmit = (e) => {
     e.preventDefault();
-
     const myForm = new FormData();
-
     myForm.set("email", email);
     dispatch(forgotPassword(myForm));
   };
@@ -45,34 +46,50 @@ const ForgotPassword = () => {
           <MetaData title="Forgot Password" />
           <div className="forgotPasswordContainer">
             <div className="forgotPasswordBox">
-              <h2 className="forgotPasswordHeading">Forgot Password</h2>
+              <h2 className="forgotPasswordHeading">
+                {message ? "Verification Link Sent Please Verify" : "Forgot Password"}
+              </h2>
 
-              <form
-                className="forgotPasswordForm"
-                onSubmit={forgotPasswordSubmit}
-              >
-                <div className="forgotPasswordEmail">
-                  <MailOutlineIcon />
+              {!message ? (
+                <form
+                  className="forgotPasswordForm"
+                  onSubmit={forgotPasswordSubmit}
+                >
+                  <div className="forgotPasswordEmail">
+                    <MailOutlineIcon />
+                    <input
+                      type="email"
+                      placeholder="Email"
+                      required
+                      name="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+
                   <input
-                    type="email"
-                    placeholder="Email"
-                    required
-                    name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    type="submit"
+                    value="Send"
+                    className="forgotPasswordBtn"
                   />
+                </form>
+              ) : (
+                <div className="emailSentBox">
+                  <a
+                    href="https://mail.google.com/mail/u/0/#inbox"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="goToGmailBtn"
+                  >
+                    Click here
+                  </a>
                 </div>
-
-                <input
-                  type="submit"
-                  value="Send"
-                  className="forgotPasswordBtn"
-                />
-              </form>
+              )}
             </div>
           </div>
         </Fragment>
       )}
+
       <ToastContainer
         position="bottom-center"
         autoClose={5000}
@@ -89,4 +106,3 @@ const ForgotPassword = () => {
 };
 
 export default ForgotPassword;
-

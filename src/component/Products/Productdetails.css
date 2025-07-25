@@ -1,0 +1,241 @@
+/* Productdetails.css */
+
+/* Container for entire product details */
+.ProductDetails {
+  display: flex;
+  gap: 3vmax;
+  padding: 2vmax;
+  font-family: "Poppins", sans-serif;
+  color: #222;
+}
+
+/* Carousel image styling */
+.CarouselImage {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+/* First column container (image, rating, description) */
+.first__varse {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vmax;
+}
+
+/* Rating container */
+.first__varse > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1vmax;
+}
+
+/* Description section */
+.Description {
+  background: #f9f9f9;
+  padding: 1vmax 1.5vmax;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.Description > span {
+  font-weight: 600;
+  margin-bottom: 0.5vmax;
+  display: block;
+}
+
+/* Second column container */
+.varse__2 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vmax;
+}
+
+/* Product title */
+.detailsBlock-1 h2 {
+  font-weight: 700;
+  font-size: 2vmax;
+  margin: 0;
+}
+
+/* Price container */
+.detailsBlock > div:first-child {
+  display: flex;
+  gap: 1vmax;
+  align-items: baseline;
+}
+
+/* Discounted price */
+.detailsBlock > div:first-child h1 {
+  font-weight: 700;
+  font-size: 2.5vmax;
+  margin: 0;
+}
+
+/* Discount price style */
+.detailsBlock > div:first-child h1:not(.discountPrice) {
+  color: #266c39;
+}
+
+/* Original price with strikethrough */
+.discountPrice {
+  color: #999 !important;
+  font-size: 1.8vmax !important;
+  text-decoration: line-through !important;
+  font-weight: 400 !important;
+}
+
+
+
+/* Quantity label */
+.quantity {
+  font-weight: 600;
+  font-size: 1.2vmax;
+}
+
+/* Quantity controls container */
+.detailsBlock-3-1 {
+  margin-top: 1vmax;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5vmax;
+}
+
+/* Quantity control buttons */
+.detailsBlock-3-1-1 {
+  display: flex;
+  align-items: center;
+  gap: 0.8vmax;
+}
+
+.detailsBlock-3-1-1 button {
+  padding: 0.5vmax 1vmax;
+  font-size: 1.5vmax;
+  background-color: #3bb77e;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.detailsBlock-3-1-1 button:hover {
+  background-color: #2a8a5e;
+}
+
+/* Quantity input */
+.detailsBlock-3-1-1 input {
+  width: 3.5vmax;
+  text-align: center;
+  font-size: 1.4vmax;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  padding: 0.2vmax 0;
+  background-color: #f5f5f5;
+  user-select: none;
+}
+
+/* Stock status */
+.stock__meta b {
+  font-weight: 700;
+  font-size: 1.1vmax;
+}
+
+.redColor {
+  color: #d32f2f;
+}
+
+.greenColor {
+  color: #388e3c;
+}
+
+/* Wishlist and Cart buttons container */
+.wishlist,
+.pointer.flex {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: #3bb77e;
+  transition: color 0.3s ease;
+  user-select: none;
+}
+
+.wishlist:hover,
+.pointer.flex:hover {
+  color: #266c39;
+}
+
+/* Wishlist icon */
+.wishlist svg {
+  fill: currentColor;
+}
+
+/* Cart button inside pointer.flex */
+.cartBtn {
+  font-weight: 600;
+  font-size: 1.1vmax;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  user-select: none;
+}
+
+/* Reviews heading */
+.reviews__heading h1 {
+  font-weight: 700;
+  font-size: 2vmax;
+  margin: 1vmax 0;
+  border-bottom: 1px solid #999;
+  font-family: "Poppins", sans-serif;
+}
+
+/* No reviews text */
+.noReviews {
+  font-style: italic;
+  color: #555;
+  margin: 1vmax 0;
+}
+
+/* Review form */
+textarea {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1vmax;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  padding: 0.8vmax 1vmax;
+  resize: none;
+  width: 100%;
+  box-sizing: border-box;
+  color: #111;
+  outline: none;
+}
+
+textarea:focus {
+  border-color: #3bb77e;
+}
+
+/* Submit button */
+button[type="submit"] {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  background-color: #3bb77e;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 1vmax 2vmax;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #2a8a5e;
+}

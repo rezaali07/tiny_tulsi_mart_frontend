@@ -1,0 +1,77 @@
+.ProductCard {
+  border: 1px solid #eee;
+  padding: 1vmax;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.3s;
+  position: relative;
+  background-color: #fff;
+}
+
+.ProductCard:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ProductImg {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.productName {
+  font-size: 1.2vmax;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.offerPriceBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.ProductCard .offerPriceBox .discountPrice {
+  font-weight: 600 !important;
+  font-size: 1.4vmax !important;
+  color: #388e3c !important;
+  text-decoration: none !important;
+}
+
+.ProductCard .offerPriceBox .p__Price {
+  font-size: 0.9vmax !important;
+  color: #999 !important;
+  text-decoration: line-through !important;
+}
+
+
+.card-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1px;
+  gap: 5px;
+ 
+}
+
+.cart-btn,
+.fav-btn {
+  background-color: #266c39;
+  color: white;
+  border: none;
+  padding: 0.5vmax 1vmax;
+  font-size: 0.9vmax;
+  border-radius: 5px;
+  flex: 1;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.fav-btn {
+  background-color: #51bb6d;
+}
+
+.cart-btn:hover,
+.fav-btn:hover {
+  background-color: #6e9b7a;
+}

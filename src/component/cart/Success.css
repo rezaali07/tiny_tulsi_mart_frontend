@@ -1,0 +1,76 @@
+.orderSuccess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  padding: 0 1rem;
+  background: #f0f9ff;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.successIcon {
+  font-size: 8rem !important;
+  color: #4caf50; /* Green */
+  animation: bounceIn 1.2s ease forwards;
+  opacity: 0;
+}
+
+.successMessage {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  animation: fadeInUp 1.5s ease forwards;
+  opacity: 0;
+}
+
+.successLink {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #1976d2;
+  text-decoration: none;
+  border: 2px solid #1976d2;
+  padding: 0.6rem 1.5rem;
+  border-radius: 25px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  animation: fadeInUp 1.8s ease forwards;
+  opacity: 0;
+}
+
+.successLink:hover {
+  background-color: #1976d2;
+  color: white;
+  cursor: pointer;
+}
+
+/* Animations */
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(-100px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05) translateY(15px);
+  }
+  70% {
+    transform: scale(0.9) translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
