@@ -7,12 +7,12 @@ import Loading from "../../more/Loader";
 import MetaData from "../../more/MetaData";
 import Header from "../Home/Header";
 import "./Profile.css";
-import ChangePasswordModal from "../settings/modals/ChangePasswordModal"; // ✅ import modal component
+import ChangePasswordModal from "../settings/modals/ChangePasswordModal";
 
 const Profile = () => {
   const { user, loading, isAuthenticated } = useSelector((state) => state.user);
   const history = useHistory();
-  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false); // ✅ modal state
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -81,6 +81,12 @@ const Profile = () => {
                   <Link to="/orders" className="settings">
                     My Orders
                   </Link>
+
+                  {/* ✅ New Button for Active Sessions */}
+                  <Link to="/me/sessions" className="settings">
+                    Manage Active Sessions
+                  </Link>
+
                   <button
                     className="settings"
                     onClick={() => setIsPasswordModalOpen(true)}
@@ -92,7 +98,6 @@ const Profile = () => {
             </div>
           </div>
 
-          {/* ✅ Password Modal */}
           <ChangePasswordModal
             isOpen={isPasswordModalOpen}
             onClose={() => setIsPasswordModalOpen(false)}

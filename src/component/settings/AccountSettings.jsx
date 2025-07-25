@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import BottomTab from "../../more/BottomTab";
 import Footer from "../../more/Footer";
 import Header from "../Home/Header";
@@ -17,24 +18,29 @@ const AccountSettings = () => {
       title: "Password",
       desc: "Change your password",
       button: "Change Password",
-      icon: "\ud83d\udd10",
+      icon: "🔐",
       action: () => setShowChangePassword(true),
     },
     {
       title: "Profile Edit",
       desc: "Edit your profile picture, name",
       button: "Edit Avatar",
-      icon: "\u270d\ufe0f",
+      icon: "✍️",
       action: () => setShowEditProfile(true),
     },
     {
       title: "Emails",
       desc: "Change your email address",
       button: "Update Email Address",
-      icon: "\ud83d\udce7",
+      icon: "📧",
       action: () => setShowChangeEmail(true),
     },
-    
+    {
+      title: "Session Management",
+      desc: "View and manage your active sessions",
+      icon: "💻",
+      link: "/me/sessions",
+    },
   ];
 
   return (
@@ -49,8 +55,17 @@ const AccountSettings = () => {
               <div className="content-box">
                 <h3>{item.title}</h3>
                 <p>{item.desc}</p>
-                {item.button && (
+                {item.button && !item.link && (
                   <button onClick={item.action}>{item.button}</button>
+                )}
+                {item.link && (
+                  <Link to={item.link}>
+                    <button>
+                      {item.title === "Session Management"
+                        ? "Manage Sessions"
+                        : "Go"}
+                    </button>
+                  </Link>
                 )}
               </div>
             </div>

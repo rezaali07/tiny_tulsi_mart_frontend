@@ -1,108 +1,3 @@
-// import React, { Fragment, useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { ToastContainer, toast } from "react-toastify";
-// import { clearErrors, resetPassword } from "../../actions/UserActions";
-// import Loading from "../../more/Loader";
-// import MetaData from "../../more/MetaData";
-// import LockIcon from "@material-ui/icons/Lock";
-// import LockOpenIcon from "@material-ui/icons/LockOpen";
-// import PasswordStrength from "../../utils/PasswordStrength"; // ✅ Import password strength component
-// import "./ResetPassword.css";
-
-// const ResetPassword = ({ history, match }) => {
-//   const dispatch = useDispatch();
-
-//   const { error, success, loading } = useSelector(
-//     (state) => state.forgotPassword
-//   );
-
-//   const [password, setPassword] = useState("");
-//   const [confirmPassword, setConfirmPassword] = useState("");
-
-//   const resetPasswordSubmit = (e) => {
-//     e.preventDefault();
-
-//     const myForm = new FormData();
-//     myForm.set("password", password);
-//     myForm.set("passwordConfirm", confirmPassword);
-
-//     dispatch(resetPassword(match.params.token, myForm));
-//   };
-
-//   useEffect(() => {
-//     if (error) {
-//       toast.error(error);
-//       dispatch(clearErrors());
-//     }
-
-//     if (success) {
-//       toast.success("Password Updated Successfully");
-//       history.push("/login");
-//     }
-//   }, [dispatch, error, history, success]);
-
-//   return (
-//     <Fragment>
-//       {loading ? (
-//         <Loading />
-//       ) : (
-//         <Fragment>
-//           <MetaData title="Change Password" />
-//           <div className="resetPasswordContainer">
-//             <div className="resetPasswordBox">
-//               <h2 className="resetPasswordHeading">Update Password</h2>
-
-//               <form className="resetPasswordForm" onSubmit={resetPasswordSubmit}>
-//                 <div>
-//                   <LockOpenIcon />
-//                   <input
-//                     type="password"
-//                     placeholder="New Password"
-//                     required
-//                     value={password}
-//                     onChange={(e) => setPassword(e.target.value)}
-//                   />
-//                 </div>
-
-//                 <div className="loginPassword">
-//                   <LockIcon />
-//                   <input
-//                     type="password"
-//                     placeholder="Confirm Password"
-//                     required
-//                     value={confirmPassword}
-//                     onChange={(e) => setConfirmPassword(e.target.value)}
-//                   />
-//                 </div>
-//                 <input
-//                   type="submit"
-//                   value="Update"
-//                   className="resetPasswordBtn"
-//                 />
-//                 {/* Show password strength only when user types */}
-//                 {password.length > 0 && <PasswordStrength password={password} />}
-//               </form>
-//             </div>
-//           </div>
-//         </Fragment>
-//       )}
-//       <ToastContainer
-//         position="bottom-center"
-//         autoClose={5000}
-//         hideProgressBar={false}
-//         newestOnTop={false}
-//         closeOnClick
-//         rtl={false}
-//         pauseOnFocusLoss
-//         draggable
-//         pauseOnHover
-//       />
-//     </Fragment>
-//   );
-// };
-
-// export default ResetPassword;
-
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
@@ -111,6 +6,8 @@ import Loading from "../../more/Loader";
 import MetaData from "../../more/MetaData";
 import LockIcon from "@material-ui/icons/Lock";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import PasswordStrength from "../../utils/PasswordStrength";
 import Footer from "../../more/Footer";
 import Header from "../Home/Header";
@@ -124,6 +21,8 @@ const ResetPassword = ({ history, match }) => {
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [localSuccessHandled, setLocalSuccessHandled] = useState(false);
 
   const resetPasswordSubmit = (e) => {
@@ -165,26 +64,40 @@ const ResetPassword = ({ history, match }) => {
             <h2 className="resetPasswordHeading">Update Password</h2>
 
             <form className="resetPasswordForm" onSubmit={resetPasswordSubmit}>
-              <div>
+              <div className="passwordInputWrapper">
                 <LockOpenIcon />
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="New Password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                <span
+                  className="eyeIcon"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </span>
               </div>
 
-              <div className="loginPassword">
+              <div className="passwordInputWrapper">
                 <LockIcon />
                 <input
-                  type="password"
+                  type={showConfirmPassword ? "text" : "password"}
                   placeholder="Confirm Password"
                   required
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
+                <span
+                  className="eyeIcon"
+                  onClick={() =>
+                    setShowConfirmPassword(!showConfirmPassword)
+                  }
+                >
+                  {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                </span>
               </div>
 
               <input
