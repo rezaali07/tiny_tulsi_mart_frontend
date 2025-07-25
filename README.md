@@ -53,6 +53,4 @@ npm install
 npm start
 
 
-📫 Contact
-✉️ Email: rezaali20ab@gmail.com
-Git: rezaali07
+
