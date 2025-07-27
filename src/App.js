@@ -8,6 +8,7 @@ import { loadUser } from "./actions/UserActions";
 import "./App.css";
 
 import About from "./component/about/About";
+import AdminAuditLogs from "./component/Admin/AdminAuditLogs";
 import AllOrder from "./component/Admin/AllOrder";
 import AllProducts from "./component/Admin/AllProducts";
 import AllReviews from "./component/Admin/AllReviews";
@@ -28,6 +29,8 @@ import Home from "./component/Home/Home";
 import productDetails from "./component/Products/ProductDetails";
 import Products from "./component/Products/products";
 import Search from "./component/Products/Search";
+import AccountSettings from "./component/settings/AccountSettings";
+import ActiveSessions from "./component/user/ActiveSessions";
 import EditProfile from "./component/user/EditProfile";
 import ForgotPassword from "./component/user/ForgotPassword";
 import MoreOption from "./component/user/MoreOption";
@@ -45,9 +48,6 @@ import Support from "./more/Support";
 import UserData from "./more/UserData";
 import ProtectedRoute from "./route/ProtectedRoute";
 import Store from "./Store";
-import ActiveSessions from "./component/user/ActiveSessions";
-import AdminAuditLogs from "./component/Admin/AdminAuditLogs";
-import AccountSettings from "./component/settings/AccountSettings";
 
 import axiosInstance, { setCsrfToken } from "./utils/axiosInstance";
 

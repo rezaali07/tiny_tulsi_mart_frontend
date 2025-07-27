@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CheckoutSteps from "./CheckoutSteps";
 import { useSelector, useDispatch } from "react-redux";
 import MetaData from "../../more/MetaData";
@@ -34,6 +34,18 @@ const Payment = ({ history }) => {
   const { user } = useSelector((state) => state.user);
   const { error, loading } = useSelector((state) => state.order);
 
+  const [csrfToken, setCsrfToken] = useState("");
+
+  // Fetch CSRF token on mount
+  useEffect(() => {
+    axios
+      .get("https://localhost:4000/api/v2/csrf-token", { withCredentials: true })
+      .then((res) => setCsrfToken(res.data.csrfToken))
+      .catch((err) =>
+        console.error("Failed to fetch CSRF token:", err?.message || err)
+      );
+  }, []);
+
   const paymentData = {
     amount: Math.round(orderInfo.totalPrice * 100),
   };
@@ -55,10 +67,13 @@ const Payment = ({ history }) => {
       const config = {
         headers: {
           "Content-Type": "application/json",
+          "X-CSRF-Token": csrfToken, // send the CSRF token here
         },
+        withCredentials: true, // send cookies
       };
+
       const { data } = await axios.post(
-        "/api/v2/payment/process",
+        "https://localhost:4000/api/v2/payment/process",
         paymentData,
         config
       );
@@ -75,7 +90,7 @@ const Payment = ({ history }) => {
             email: user.email,
             address: {
               line1: shippingInfo.address,
-              city: shippingInfo.state,  // <-- replaced city with state, fix if needed
+              city: shippingInfo.state, // adjust if you want actual city here
               state: shippingInfo.state,
               country: shippingInfo.country,
             },
@@ -122,7 +137,7 @@ const Payment = ({ history }) => {
         <Loading />
       ) : (
         <>
-        <Header/>
+          <Header />
           <MetaData title="Payment" />
           <CheckoutSteps activeStep={2} />
           <div className="paymentContainer">
@@ -160,7 +175,7 @@ const Payment = ({ history }) => {
             draggable
             pauseOnHover
           />
-          <Footer/>
+          <Footer />
         </>
       )}
     </>
